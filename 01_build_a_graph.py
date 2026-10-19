@@ -5,11 +5,11 @@ chat = nx.Graph()
 chat.add_edges_from([("A", "B"), ("A", "C"), ("B", "C"),
                      ("B", "D"), ("C", "D"), ("D", "E")])
 #
-print("vertices:", chat.number_of_nodes())   # 5
+print("nodes:", chat.number_of_nodes())      # 5
 print("edges:", chat.number_of_edges())      # 6
 print("degrees:", dict(chat.degree()))       # how many friends each
 #
-# the handshake lemma: every edge has two ends, so it is counted twice
+# the handshake rule: every edge has two ends, so it is counted twice
 total = sum(d for _, d in chat.degree())
 print(total, "==", 2 * chat.number_of_edges())   # 12 == 12
 #
