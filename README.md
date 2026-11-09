@@ -40,7 +40,7 @@ Try each one before opening the answer.
 14. One new friendship adds 1 to A's count and 1 to E's count, so the total grows by 2. A total of the form 2 × friendships is always even, which also means a graph can never have an odd number of people with an odd friend count.
 </details>
 
-**2. Another bad road.** In `03_maps_mud_detour.py`, keep the crash (`45`) but change the dirt road's second stretch, `("dirt road", "airport")`, from 10 to 30 minutes. Which route wins now, and how long does it take?
+**2. Another bad road.** In `03_maps_mud_detour.py`, keep the crash (`45`) but change the dirt road's second stretch, `("dirt road", "airport")`, from 10 to 30 minutes. Which route does the second `print` show now, and how long does it take?
 
 <details><summary>Answer</summary>
 
@@ -95,6 +95,21 @@ E with 3, F with 2 and H with 1. G disappears from the list because G is now you
 
 A, B, C, A and A, C, B, A. They are loops of length 3 (triangles). A walk that comes back home is never a path, because a path may not repeat a node.
 </details>
+
+## Asking an AI to write graph code
+
+You will often let an AI assistant write this kind of code. Describe three things and the answer improves a lot: what the nodes are, what a line means, and whether lines have a direction or a number. For example:
+
+```
+I have a friend network in a CSV with two columns,
+person_a and person_b. Friendship goes both ways.
+Using Python and networkx, load it as an undirected graph,
+print each person's friend count, check the handshake rule,
+and for the person "You", list non-friends ranked by
+number of mutual friends. Explain each line briefly.
+```
+
+Then check the code it returns. One-way arrows need `nx.DiGraph`, not `nx.Graph`. Minutes or distances need `weight=` and a shortest-path call such as `nx.dijkstra_path`. A friend count that looks too big can mean someone was linked to themselves.
 
 ## Data
 

@@ -1,17 +1,11 @@
 import networkx as nx
 #
-# five people in a group chat, each pair is one friendship
-chat = nx.Graph()
-chat.add_edges_from([("A", "B"), ("A", "C"), ("B", "C"),
-                     ("B", "D"), ("C", "D"), ("D", "E")])
+# a graph is just a list of who-is-linked-to-whom pairs
+chat = nx.Graph([("A", "B"), ("A", "C"), ("B", "C"),
+                 ("B", "D"), ("C", "D"), ("D", "E")])
 #
-print("nodes:", chat.number_of_nodes())      # 5
-print("edges:", chat.number_of_edges())      # 6
-print("degrees:", dict(chat.degree()))       # how many friends each
-#
-# the handshake rule: every edge has two ends, so it is counted twice
-total = sum(d for _, d in chat.degree())
-print(total, "==", 2 * chat.number_of_edges())   # 12 == 12
+print(dict(chat.degree()))     # {'A': 2, 'B': 3, 'C': 3, 'D': 3, 'E': 1}
+print(sum(d for _, d in chat.degree()), 2 * chat.number_of_edges())
 #
 # directed: following is one way, so A -> B says nothing about B -> A
 follows = nx.DiGraph([("A", "B"), ("B", "A"), ("C", "A")])
